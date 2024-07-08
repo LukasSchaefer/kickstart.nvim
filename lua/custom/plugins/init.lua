@@ -11,17 +11,17 @@ return {
     init = function()
       -- VimTeX configuration goes here, e.g.
       vim.g.vimtex_view_method = 'skim'
+      -- vimtex setting for latexmk compiler
+      vim.g.vimtex_compiler_latexmk = {
+        options = {
+          '-pdf',
+          '-shell-escape',
+          '-verbose',
+          '-file-line-error',
+          '-synctex=1',
+          '-interaction=nonstopmode',
+        },
+      }
     end,
   },
-  -- let g:vimtex_compiler_latexmk = {
-  -- \ 'options' : [
-  -- \   '-pdf',
-  -- \   '-shell-escape',
-  -- \   '-verbose',
-  -- \   '-file-line-error',
-  -- \   '-synctex=1',
-  -- \   '-interaction=nonstopmode',
-  -- \ ],
-  -- \}
-  -- translate the previous lines to lua:
 }

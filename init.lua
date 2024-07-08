@@ -154,18 +154,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- vimtex setting for latexmk compiler
-vim.g.vimtex_compiler_latexmk = {
-  options = {
-    '-pdf',
-    '-shell-escape',
-    '-verbose',
-    '-file-line-error',
-    '-synctex=1',
-    '-interaction=nonstopmode',
-  },
-}
-
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -577,9 +565,23 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        -- ruff_lsp = {
+        --   settings = {
+        --     -- Any extra CLI arguments for 'ruff' go here.
+        --     enable = true,
+        --     ignoreStandardLibrary = true,
+        --     organizeImports = true,
+        --     fixAll = true,
+        --     lint = {
+        --       enable = true,
+        --       run = 'onType',
+        --     },
+        --     args = {},
+        --   },
+        -- },
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -849,7 +851,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'python', 'lua', 'latex', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'vim', 'vimdoc', 'python', 'lua' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -857,7 +859,7 @@ require('lazy').setup({
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
+        -- additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
