@@ -181,7 +181,24 @@ return {
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
+  { -- nvim file explorer plugin
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      -- disable netrw at the very start of your init.lua
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
 
+      -- optionally enable 24-bit colour
+      vim.opt.termguicolors = true
+
+      -- empty setup using defaults
+      require('nvim-tree').setup()
+
+      -- See `:help telescope.builtin`
+      local api = require 'nvim-tree.api'
+      vim.keymap.set('n', '<leader>ne', api.tree.toggle, { desc = '[N]eovim [E]xplorer', noremap = true })
+    end,
+  },
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
